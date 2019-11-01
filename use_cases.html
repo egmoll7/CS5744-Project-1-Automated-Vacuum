@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CS5744 - Project 1 - Robot Vacuum</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">Stair Climbing Vacuum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Background</a>
+                <a class="nav-item nav-link active" href="use_cases.html">Use Cases</a>
+                <a class="nav-item nav-link" href="requirements.html">Requirements</a>
+                <a class="nav-item nav-link" href="design.html">High-Level Design</a>
+                <a class="nav-item nav-link" href="modules.html">Modules</a>
+                <a class="nav-item nav-link" href="rationale.html">Design Rationale</a>
+                <a class="nav-item nav-link" href="conclusion.html">Conclusion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="row mt-5">
+            <h3>Use Cases</h3>
+        </div>
+
+        <div class="row mt-3">
+            <p>The primary intended user is for anyone living in a home with multiple levels, and as we have previously
+                discussed that is going to be the majority of Americans at some point in their life. Below are just a
+                few
+                examples of people where the best option for them is something that they don't have to think about
+                constantly cleaning the whole house. </p>
+        </div>
+
+        <div class="row mt-3">
+            <h4>Situation 1 - Modern couple, Fast pace lives, Tall house </h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                Priyanka and Aisha are two early thirty year old young professionals that just moved in together. They
+                both
+                work in DC, Aisha spends her days working as an event planning executive, that sometimes requires her to
+                also be out at night all over the city. Priyanka is an independent contractor that takes photography and
+                edits videos with a home office and shared space office, making her hours as unpredictable as her
+                partner
+                Aisah. In their price range, and with the hopes of building a family, they have moved into a beautiful
+                four
+                story townhouse in Alexandria, VA (See Figure 3).
+            </p>
+
+            <p>
+                Aisha is bringing her rescue cat, Mushabeen, from college that sheds on everything all year. Priyanka
+                has a
+                pet hair allergy, and if they are ever going to be able to live together, and to make sure that Priyanka
+                is
+                not always vacuuming up the house they need to find a solution that can clean all the floors, while they
+                are
+                both out of the house. Their current solutions are to either hire a cleaning crew to come into the house
+                daily, or to get an autonomous vacuum for each floor. Both have a high price, and the second option
+                takes up
+                too much space. With an autonomous vacuum that can climb stairs, Priyanka can run the vacuum once a day
+                before she gets home, and is sure that their home feels, well, like home (See Figure 3).
+            </p>
+        </div>
+
+        <figure class="text-center mt-4">
+            <img class="figure-img img-fluid" src="images/Figure-3.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 3. Representation of the Use Cases
+            </figcaption>
+        </figure>
+
+        <div class="row mt-5">
+            <h4>Situation 2 - Larger rented house, different person on a different floor</h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                Thomas, George, and Dylan have just graduated from college and have just moved to Richmond, VA to begin
+                the next chapter of their lives. Thomas works as a tour guide for the historical sites around Richmond.
+                Dylan is an accountant working for the Goldman Sachs office in Richmond. George is starting a non-profit
+                company that helps to bring food to people with food insecurity in DC. They are each renting a floor in
+                one of the historical buildings in the center of Richmond, the building was built in the 1920’s and
+                needs to be constantly cleaned or ants and mice find their way in. Plus, Thomas’s parents have just sold
+                his child home and have made his responsible for their Pug Franky, and Dylan is coming into the house
+                with the dog, Oliver, that he won from his recent breakup.
+            </p>
+
+            <p>
+                While all three of them love dogs, and Franky and Oliver are now best friends, they are tight on space
+                and are looking for a way to minimize the amount of stuff that they each have. Their current solutions
+                are to each have their own cleaning supplies and to make a chore chart for any common space. Other
+                option is to have only one set of cleaning supplies and find time to split the supplies or go into each
+                others rooms to clean the floor. Their best option is to all to chip in for an autonomous stair climbing
+                vacuum that turns on once a day, cleans up the dog hair, keeps the mice and ants out, and each floor
+                clean without invading each other's privacy (See Figure 3).
+
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

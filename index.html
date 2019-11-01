@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CS5744 - Project 1 - Robot Vacuum</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">Stair Climbing Vacuum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="index.html">Background</a>
+                <a class="nav-item nav-link" href="use_cases.html">Use Cases</a>
+                <a class="nav-item nav-link" href="requirements.html">Requirements</a>
+                <a class="nav-item nav-link" href="design.html">High-Level Design</a>
+                <a class="nav-item nav-link" href="modules.html">Modules</a>
+                <a class="nav-item nav-link" href="rationale.html">Design Rationale</a>
+                <a class="nav-item nav-link" href="conclusion.html">Conclusion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="row mt-5">
+            <h3>Background</h3>
+        </div>
+
+        <div class="row mt-3">
+            <p>Cleaning can be a daunting task, especially when your household has multiple levels, which at some point
+                in
+                most Americans lives is going to almost be a given. If people are looking for a larger space, they are
+                going
+                to look for space vertically, meaning more levels in the house. Living in a city where you are sharing a
+                house, or in a townhouse makes an autonomous vacuum cleaner that can only do one level is not an
+                attractive
+                purchase. Buying a product that is a few hundred dollars with the ability to clean only thirty percent
+                of
+                the house that you live not a good option. The market has seen the evolution of autonomous vacuum
+                cleaners
+                as a revolutionary idea, with an unfortunate draw back for the majority of people with homes that are
+                more
+                than one level (See Figure 1).</p>
+        </div>
+
+        <figure class="text-center mt-3">
+            <img class="figure-img img-fluid" src="images/Figure-1.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 1. Current flawed Autonomous vs Stair-climbing
+                Autonomous Vacuum
+            </figcaption>
+        </figure>
+
+
+        <div class="row mt-3">
+            <p>While the autonomous vacuum has been evolving to be an effective device cleaning any space the first
+                device
+                is targeted at only a specific end users. The use of sensors to read its environment has been changing
+                over
+                the years, types of mostly laser or infrared sensors. These sensors allow the autonomous vacuum to
+                trigger
+                programmed behaviours that determine how the device will behave (See Figure 2). Using a methodical
+                back-and-forth motion, the implementation of a cliff sensor will allow the autonomous vacuum to detect
+                the
+                area
+                of the steps and proceed with the action of climbing the steps. With the next few sections we will show
+                how
+                the
+                autonomous vacuum cleaner can be a house staple, with just fixing its inability to traverse steps.</p>
+        </div>
+
+        <figure class="text-center mt-4">
+            <img class="figure-img img-fluid" src="images/Figure-2.png" alt="Figure 2">
+            <figcaption class="figure-caption text-center">Figure 2. Sensors inside an Autonomous Vacuum
+            </figcaption>
+        </figure>
+
+    </div>
+
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CS5744 - Project 1 - Robot Vacuum</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">Stair Climbing Vacuum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Background</a>
+                <a class="nav-item nav-link" href="use_cases.html">Use Cases</a>
+                <a class="nav-item nav-link" href="requirements.html">Requirements</a>
+                <a class="nav-item nav-link active" href="design.html">High-Level Design</a>
+                <a class="nav-item nav-link" href="modules.html">Modules</a>
+                <a class="nav-item nav-link" href="rationale.html">Design Rationale</a>
+                <a class="nav-item nav-link" href="conclusion.html">Conclusion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="row mt-5">
+            <h3>High-Level Design</h3>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                The idea of a robot that climbs stairs is something that is incredibly complex. Trying to replicate the
+                movement of human legs is a daunting task that even our most ingenious engineers are working on. Robots
+                that climb stairs will be a huge step in making robots that can walk around, that can look like humans,
+                and then will be able to do human tasks. If you search for autonomous vacuums that can climb stairs you
+                find a plethora of ingenious labs that are currently working on the problem. They know that, according
+                to realtor magazine 58% of homes are multi story homes versus 42% that are single story. There are
+                plenty of labs like Playupus that are working on different compact stair climbing mechanisms. Their
+                prototypes focus on a spring forward design (See Figure 4).
+
+            </p>
+        </div>
+
+        <figure class="text-center mt-4">
+            <img class="figure-img img-fluid" src="images/Figure-4.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 4. Autonomous stair climbing model from design from
+                Playupus
+            </figcaption>
+        </figure>
+
+
+        <div class="row mt-3">
+            <p>
+                Instead of looking at the lift like a human limb, we instead wanted to focus on a design that would work
+                like a bug with multiple legs. We broke down the main focus of this exploration into getting up stairs
+                and then getting down the stairs. We realized that we needed to build a system that reacts and has a
+                memory. We settled on a table driven interpreters.
+            </p>
+
+            <p>
+                To tackle the first problem is important to figure out how to allow the autonomous vacuum to go up the
+                stairs. While the device could have an input of the floor plan of the house, there needs to be a place
+                to input the height of the steps in the house. The plan for this problem is to get the autonomous vacuum
+                to the steps to lift, the height of the steps and inch forward individually lifting one of its legs at a
+                time to get on the steps. This system will be repeatable until the robot hits the top of the steps,
+                which it will know because there is no longer anything in front of it.
+            </p>
+
+            <p>
+                Now to tackle the second part of the problem is to include in the robot an infrared detector all around.
+                Allowing the robot to detect when it has hit a ledge, once the robot hits the cliff, the infrared
+                detector will be able to tell the autonomous vacuum how far the cliff is, acting the same way as any
+                infrared motion detector on cameras. As long as the ledge is the top of the stairs that has been
+                previously programmed into the robot will move one leg at a time as it descends until it hits the bottom
+                of the steps and continues to clean the house.
+            </p>
+
+            <p>
+                Since we realized that this design is going to require four components that come with the interpreters,
+                we settled on an Abstract Data Type (ADT) solution:
+            </p>
+
+            <ul>
+                <li>The first module is going to be the engine that does the work or in our case the autonomous vacuum.
+                </li>
+                <li>The second module is going to be the memory that has a pseudocode to be interpreted, in our case the
+                    programing of the layout of the house floor plan and the place that it’s cleaning.</li>
+            </ul>
+
+            <p>
+                The representation of the control state of the interpretation engine or what the system needs to be
+                doing when climbing the stairs. Finally a representation of the current state of the program being
+                simulated, the actual climbing of the stairs as programmed. We need the architecture of the design to be
+                an implicit invocation design. This is required since the complexity of the situation we needed to be
+                sure that not each part of the robot was reacting to just the main input individually. We found that the
+                best situation was a High-Level Design in which the programing communicated in a specific way. (See
+                Figure 5)
+
+            </p>
+        </div>
+
+        <figure class="text-center mt-4">
+            <img class="figure-img img-fluid" src="images/Figure-5.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 5. Interaction of the autonomous vacuum climbing and
+                descending the stairs
+            </figcaption>
+        </figure>
+
+        <div class="row mt-3">
+            <p>
+                For a better understanding on how the autonomous vacuum is going to climb or descend the stairs. The
+                following section is going to show a breakdown of each step the autonomous vacuum makes. The flow of
+                making sure that each roller is on the steps it’s working to climb is the key to successfully make sure
+                that the step stays balanced. For a best organized system flow for the implicit invocation system, we
+                build two Unified Modeling Language (UML) charts.
+            </p>
+        </div>
+
+        <div class="row mt-5">
+            <h4>Going up the Stairs</h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                The following breakdown is all the decision making and workflow to allow the autonomous vacuum go up the
+                stairs:
+            </p>
+
+            <ol>
+                <li>When first purchased, user or technician inputs floor plan and height of steps.</li>
+                <li>System is activated remotely or manually by the user.</li>
+                <li>System detects the battery level:
+                    <ol>
+                        <li>If the battery level is 10% or lower notifies the user on docking station and mobile app.
+                            <ol>
+                                <li>System does not activate, or returns to the docking station.</li>
+                            </ol>
+                        </li>
+
+                        <li>If the battery is 30%-11% notifies the user on the mobile app and on docking station.
+                            <ol>
+                                <li>Continues normal floor cleaning functions until battery hits 10% then activates
+                                    steps 3.a
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                </li>
+                <li>System detects vacuum bag level:
+                    <ol>
+                        <li>If the bag level is 85% full or higher notifies user on docking station and mobile app.
+                            <ol>
+                                <li>
+                                    System does not activate, or returns to the docking station.
+                                </li>
+                            </ol>
+                        </li>
+                        <li>
+                            If the bag level is 70%-84% full notifies user on the mobile app and on docking station.
+                            <ol>
+                                <li>
+                                    Continues normal floor cleaning functions until the bag level hits 85% then
+                                    activates steps 4.a
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+                <li>The system cleaner comes to where it believes the bottom of the stairs are.</li>
+                <li>The system raises up on the six wheels to the height pre-programed.</li>
+                <li>Detects if it is able to move forward:
+                    <ol>
+                        <li>Detects if steps are not detected vacuum returns to cleaning.</li>
+                    </ol>
+                </li>
+                <li>Lifts and folds first wheel in the sequence of 6.</li>
+                <li>Moves forward until wheel is on step.</li>
+                <li>Lifts next wheel in sequence.</li>
+                <li>Repeat steps 9 and 10 until all six wheels are on the step.</li>
+                <li>Detects if there is a next step:
+                    <ol>
+                        <li>If next stairs system repeats steps 7 - 11.</li>
+                    </ol>
+                </li>
+                <li>When no more steps the system resumes all regular autonomous vacuum functions and continues.</li>
+            </ol>
+
+            <p>
+                For a better visualization, we can follow the decision making process with the following UML:
+            </p>
+        </div>
+
+        <figure class="text-center mt-4">
+            <img class="figure-img img-fluid" src="images/Figure-6.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 6. High Level Functional Overview
+            </figcaption>
+        </figure>
+
+        <div class="row mt-5">
+            <h4>Going down the stairs</h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                The following breakdown is all the decision making and workflow to allow the autonomous vacuum go down
+                the stairs:
+            </p>
+
+            <ol>
+                <li>When first purchased, user or technician inputs floor plan and height of steps.</li>
+                <li>System is activated remotely or manually by the user.</li>
+                <li>System detects the battery level:
+                    <ol>
+                        <li>If the battery level is 10% or lower notifies the user on docking station and mobile app.
+                            <ol>
+                                <li>System does not activate, or returns to the docking station.</li>
+                            </ol>
+                        </li>
+
+                        <li>If the battery is 30%-11% notifies the user on the mobile app and on docking station.
+                            <ol>
+                                <li>Continues normal floor cleaning functions until battery hits 10% then activates
+                                    steps 3.a
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+
+                </li>
+                <li>System detects vacuum bag level:
+                    <ol>
+                        <li>If the bag level is 85% full or higher notifies user on docking station and mobile app.
+                            <ol>
+                                <li>
+                                    System does not activate, or returns to the docking station.
+                                </li>
+                            </ol>
+                        </li>
+                        <li>
+                            If the bag level is 70%-84% full notifies user on the mobile app and on docking station.
+                            <ol>
+                                <li>
+                                    Continues normal floor cleaning functions until the bag level hits 85% then
+                                    activates steps 4.a
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+                <li>The system cleaner comes to where it believes the top of the stairs are.</li>
+                <li>The system uses infrared systems to detect if ledge is top of steps.</li>
+                <li>Detects if it is able to move forward:
+                    <ol>
+                        <li>If steps are not detected vacuum returns to cleaning.</li>
+                    </ol>
+                </li>
+                <li>The system moved forward until first leg is over the ledge.</li>
+                <li>System lowers and unfolds first wheel in the sequence of 6.</li>
+                <li>System lower wheel until it detects that the pressure from the wheel hitting the step.</li>
+                <li>System moves forward until next wheel has nothing underneath.</li>
+                <li>Unfolds next wheel in sequence until it hits the next step.</li>
+                <li>Repeat steps 11 and 12 until all six wheels are on the step.</li>
+                <li>System lowers completely.</li>
+                <li>Detects if there is a next step:
+                    <ol>
+                        <li>If next stairs system repeats steps 8 - 13.</li>
+                    </ol>
+                </li>
+                <li>When no more steps the system resumes all regular autonomous vacuum functions and continues.</li>
+            </ol>
+
+            <p>
+                For a better visualization, we can follow the decision making process with the following UML:
+            </p>
+        </div>
+
+        <figure class="text-center mt-4">
+            <img class="figure-img img-fluid" src="images/Figure-7.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 7. High Level Functional Overview
+            </figcaption>
+        </figure>
+
+
+    </div>
+
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

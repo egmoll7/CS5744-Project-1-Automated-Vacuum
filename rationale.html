@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CS5744 - Project 1 - Robot Vacuum</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">Stair Climbing Vacuum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Background</a>
+                <a class="nav-item nav-link" href="use_cases.html">Use Cases</a>
+                <a class="nav-item nav-link" href="requirements.html">Requirements</a>
+                <a class="nav-item nav-link" href="design.html">High-Level Design</a>
+                <a class="nav-item nav-link" href="modules.html">Modules</a>
+                <a class="nav-item nav-link active" href="rationale.html">Design Rationale</a>
+                <a class="nav-item nav-link" href="conclusion.html">Conclusion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="row mt-5">
+            <h3>Design Rationale</h3>
+        </div>
+
+        <div class="row mt-3">
+            <h4>Function 1: Size & Structure </h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                The design of the autonomous vacuum is easily one of the ideas that began as a million dollar idea with
+                a fatal drawback, its inability to do multiple floors. For that reason we decided to set out to build a
+                system that has that ability to climb the stairs. As previously discussed, there is a limit to the
+                diameter of the autonomous vacuum. The average size of stairs is between 8 ¼” to 9”, forcing us to build
+                vertically. This will turn into the reason that the autonomous vacuum will have a taller thinner body.
+                Following our requirements now, will force us to build a design that is tall, since we need to take into
+                account that the system’s center of gravity is much higher than its predecessors.
+            </p>
+
+            <p>
+                To make sure that the autonomous vacuum holds as little as possible the majority of the systems designs,
+                instructions, and memory is going to be placed inside the docking station. The docking station or the
+                command center will be the fundamental piece for controller and communicating wirelessly with the system
+                as it moves around the house. This is going to be necessary to keep the system as light as possible, the
+                lighter objects will be located at the top of the system. It needs to contain only a bluetooth device
+                that can receive instructions and a simple motherboard that has the ability to translate those
+                instructions into actions.
+            </p>
+
+            <p>
+                The battery for the autonomous vacuum will be located at the bottom of the body. This will help the
+                system to lower its center of gravity while the wheels and the lifting mechanism will be at the bottom
+                of the system along with a set of infrared sensors. The main part of the autonomous vacuum that will be
+                at the top is the vacuum hose and vacuum bag. These elements are the lightest parts of the system and
+                they will be on top of everything.
+            </p>
+
+            <p>
+                All the decisions made around the autonomous vacuum design where specifically made to assure that the
+                system can deliver a smaller body in width while making room for all the necessary pieces to work
+                properly and efficiently.
+            </p>
+        </div>
+
+        <div class="row mt-3">
+            <h4>Function 2: Lifting Mechanism</h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>The lifting mechanism for our autonomous vacuum is going to be focused on assuring that the system is
+                able to stay vertically. The decision to choose a total of six wheels is more of an insurance policy
+                while to some users it might seem kind of excessive. But this is with the whole purpose of keeping the
+                mechanism and the system stable. It’s important to say that we want only one wheel to be off of a
+                surface at a time, since we need to keep the mechanism balanced. If we refer back to Figure 9, we can
+                see that all the wheels are staggered. When the autonomous vacuum arrives at either the beginning or the
+                end of the steps it will follow the decision making flow to swivel so that the predetermined ‘front’ of
+                the mechanism faces the steps. This will be the best way to ensure that the wheels in our device will
+                stay staggered when climbing the stairs.
+            </p>
+
+            <p>
+                We have also designed that the autonomous vacuum arrives at the bottom of the stairs, all of the wheels
+                will activate to lift the entire system at one time. The design also contains the interaction to allow
+                the system to go down the stairs while extending all the six wheels to the next step and then lower at
+                once. This will help the system to keep the center of gravity low and we have created a design where the
+                wheels will fold into the bottom of the system. This will keep the weight of the heavy hardware closest
+                to the ground. By having the wheel fold in, it also allows for the wheels to stay close to the ground.
+            </p>
+        </div>
+
+        <div class="row mt-3">
+            <h4>Function 3: Spinning & Sensors</h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>Another additional advantage of the autonomous vacuum system is having the six wheels. This will allow
+                the system to use the ability to spin around. The spinning system will also help the autonomous vacuum
+                by giving the controller options when there is something wrong detected. The battery sensor is essential
+                to any type of device and to prevent the autonomous vacuum from getting stuck somewhere in the house and
+                allow the manual option for the system to return to its docking station. To ensure that the autonomous
+                vacuum stays clean and that there is no dirt contaminating throughout the system, it is essential to
+                have a bag sensor. If the system is forced to continue cleaning without room to store the dirt, this
+                might cause the overflow into the rest of the machine and break it.
+            </p>
+
+            <p>
+                That’s why we have chosen to include the infrared sensors on both the center of the system and around
+                the bottom of the system. The sensors around the center of the system are essential to detecting the
+                ability to climb the stairs. They will also be able to help on detecting when the device is running into
+                furniture or running into a wall or corners. The Infrared sensors on the bottom of the system are what
+                will help to tell when the autonomous vacuum needs to go down the stairs and prevent it from falling off
+                a ledge. This will require a sensor inside of the system that will help to detect if the system begins
+                to tilt to much, it will communicate with the controller to help prevent the system from tilting
+                further.
+            </p>
+        </div>
+    </div>
+
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

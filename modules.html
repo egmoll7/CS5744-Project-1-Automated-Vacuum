@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CS5744 - Project 1 - Robot Vacuum</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">Stair Climbing Vacuum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Background</a>
+                <a class="nav-item nav-link" href="use_cases.html">Use Cases</a>
+                <a class="nav-item nav-link" href="requirements.html">Requirements</a>
+                <a class="nav-item nav-link" href="design.html">High-Level Design</a>
+                <a class="nav-item nav-link active" href="modules.html">Modules</a>
+                <a class="nav-item nav-link" href="rationale.html">Design Rationale</a>
+                <a class="nav-item nav-link" href="conclusion.html">Conclusion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="row mt-5">
+            <h3>Modules</h3>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                Now that we have the UML chart of the two important steps needed to make the autonomous vacuum into one
+                that climbs stairs we can delve deeper into the architecture of the system that we are building and our
+                guiding vision. Combining all the individual modules together for our design, we have to follow a basic
+                workflow of the decision making of the autonomous vacuum to go up or down the stairs is as follows:
+            </p>
+        </div>
+
+        <div class="row mt-3">
+            <h4>Module 1 - The Equipment Sensors</h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                The equipment sensors are going to be the most important part of the system. This sensors are necessary
+                for telling the system when it’s safe to function properly. Because we are trying to get a very specific
+                system to have the ability to walk up and down the stairs, we need to be sure that all the sensors,
+                checks and balances are in place. This will make the system take the decision of not begin to move when
+                it can’t move to take in dirt or that it will eventually just stop working properly in the middle of a
+                step. It’s important to make sure that the sensors are in place before the controller can move the
+                hardware.
+            </p>
+        </div>
+
+        <div class="row mt-3">
+            <h4>Design Element DE - 1</h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                To have the best protection of the autonomous vacuum, we have to make sure that we identify the
+                different
+                problems the device will have. Identifying those problems will allow us to create sensors with the whole
+                purpose of solving them.Because we are working with systems that should react to a previous command and
+                not
+                independently we have build an interpreter type architecture system for the equipment sensors.
+                Interpreters
+                are the most common kind of architecture that build virtual machine that close the gap between what the
+                engine expects and real world hardware actions. Below we have defined the sensors versus the interpreter
+                definitions:
+            </p>
+
+            <table class="table table-striped table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Input</th>
+                        <th scope="col">Outputs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Data Program State</th>
+                        <td>
+                            A change in any current protection sensors, i.e. infrared sensors, from the vacuum bag, and
+                            from
+                            the battery life.
+                        </td>
+                        <td>The need to check the current state of one of the sensors</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Internal Interpreter State</th>
+                        <td>The current levels on the sensors</td>
+                        <td>Updating both the simulated engine and the current program state for information </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Program Being Interpreted</th>
+                        <td>The stored memory of the simulated Engine and internal interpreter</td>
+                        <td>Language of the Status to be updated on home base and on the app</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Simulated Interpretation Engine</th>
+                        <td>The simulation on the continued use of the vacuum in current state</td>
+                        <td>Vacuum’s ability to continue functions safely</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Selected Instructions</th>
+                        <td>Input from the current state</td>
+                        <td>Carries over to the simulated program </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Translating the interpreter definitions above into the following graph:</p>
+        </div>
+
+        <figure class="text-center mt-3">
+            <img class="figure-img img-fluid" src="images/Figure-8.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 8. Process control for Interpreter based on data
+            </figcaption>
+        </figure>
+
+        <div class="row mt-5">
+            <p>
+                In Figure 8 we can see that the input is going to be the current state of the autonomous vacuum and any
+                changes that may occur. This process is going to be activated as long as the autonomous vacuum is not
+                currently trying to climb the stairs, any time that there is a change in any of the defined states of
+                the device. The input for the data stored is going to be if the current data doesn’t match when there is
+                a change, then it will send a verification for that state. After this, the system will be able to make
+                an update to the memory of the state, verifies the current state and that is when it will be
+                interpreted. A simulation of what will happen to the system will be done to verify. The simulation will
+                use the new information and make a decision and either change direction, stop or head back to the dock
+                station.
+            </p>
+        </div>
+
+        <div class="row mt-3">
+            <h4>Module 2 - The Hardware</h4>
+        </div>
+
+        <div class="row mt-3">
+            The equipment sensors are an important element to tell the system what to do, but we need to know the
+            dimensions of the system we are currently using. While it’s important to make sure that the average width of
+            the steps are accounted for to where we believe the floor plan is best stored and how it communicates with
+            the autonomous vacuum. The actual hardware components for our autonomous vacuum will have the majority
+            implementation of our Functional Requirements.
+
+        </div>
+
+        <div class="row mt-3">
+            <h4>Design Element - DE 2</h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                For this module is required to create a list of the restrictions and requirements to allow the
+                autonomous vacuum work properly while implementing a basic functional design. As we can see in Figure 9
+                our basic design for what we the autonomous vacuum should look like:
+                <ol>
+                    <li>The device can’t be bigger than 8”</li>
+                    <li>The device must have at least 6 wheels for the best balance</li>
+                    <li>The wheels need to be able to go more than one direction</li>
+                    <li>The wheels need the capacity to fold for vacuum space</li>
+                    <li>The design is specifically important to keep the vacuum level, and not to tilt it</li>
+                    <li>The docking base will have displays</li>
+                    <li>The device must have infrared sensors on front and sides </li>
+                    <li>The vacuum section should be able to swivel</li>
+                </ol>
+            </p>
+        </div>
+
+        <figure class="text-center mt-3">
+            <img class="figure-img img-fluid" src="images/Figure-9.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 9. Basic rendering of the Hardware Module
+            </figcaption>
+        </figure>
+
+        <div class="row mt-3">
+            <p>
+                The side view of the hardware (See Figure 9) shows that we are going to need to build something taller
+                to make room for the additional components. While the autonomous vacuum will have a small motherboard,
+                the majority of the instructions will come from the wireless connection with the docking base. The
+                majority of instructions that will be contained in the autonomous vacuum will be to carry the
+                information back to the docking base about the change in state. That connection will tell the directions
+                where the autonomous vacuum has to go. It’s important to have the focus on a vertical design because of
+                the limitation of the average size of stairs. The average size of stairs is between 8 ¼” and 9”. To be
+                sure that the design will work in every household, we have limited the diameter to be 8 inches and the
+                rest of the components will be implemented vertically.
+            </p>
+
+            <p>
+                The bottom of the autonomous vacuum (See Figure 9) shows that we have intentionally set the spacing of
+                the wheels to be staggered, with a set of infrared sensors all around the body. The importance of the
+                staggering is to keep balance when the autonomous vacuum moves up and down the stairs. Because the
+                device is going to be heavy, like with a truck there is a larger possibility for the autonomous vacuum
+                to topple if it leans forward. To be certain that the autonomous vacuum will stay parallel to the
+                ground, the wheels need to stagger while doing the lift to meet the next step, as seen in Figure 10.
+            </p>
+
+            <p>
+                As we can see in Figure 10 steps c through j the autonomous vacuum will never have more than one leg off
+                the ground at a time, assuring to keep good balance. If we see again Figure 10 and follow backwards the
+                steps j through a, we can see how the device is able to navigate down the stairs.
+            </p>
+        </div>
+
+        <figure class="text-center mt-3">
+            <img class="figure-img img-fluid" src="images/Figure-10.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 10. Stair Climbing Model
+            </figcaption>
+        </figure>
+
+        <div class="row mt-3">
+            <h4>Module 3 - The Controller </h4>
+        </div>
+
+        <div class="row mt-3">
+            The Controller Module is responsible for the best implementation of the Implicit Invocation Architecture
+            System. This module will also make sure that the system for the autonomous vacuum will work properly and
+            staying on task. The system should be able to follow a properly design subset of instructions and follow
+            them through the process flow of instructions when the autonomous vacuum may be in an unsafe location and it
+            decides to leave.
+        </div>
+
+        <div class="row mt-3">
+            <h4>Design Element - D3</h4>
+        </div>
+
+        <div class="row mt-3">
+            <p>
+                The controller is where the complex instructions and programs will be contained to communicate with, and
+                take instructions from the user. The controller should be able to keep communication between the
+                autonomous vacuum while cleaning and navigating the house. This is where the actual software will take
+                place and we need to think about how this is going to be built. The controller is the command center and
+                the interpreter of all the sensor warnings, See Figure 8. We have laid out the requirements for the
+                program that needs to be created:
+
+                <ol>
+                    <li>FloorPlanStorage - Program focused on the Floor Plan of the house.</li>
+                    <li>DistanceReader - Program with the ability to store the distance that the autonomous vacuum has
+                        covered. This will tell the controller module each floor of the house and when the device has
+                        reached the steps.</li>
+                    <li>CoveredGround - Memory focused on the floor covered from the house. This will allow the
+                        autonomous vacuum to to know when to move to the next floor or when to go back to the docking
+                        station.</li>
+                    <li>BagLevel & BatteryLevelBattery & Bag Sensor Interpreter - The autonomous vacuum will sense the
+                        battery or bag levels and the controller will interpret the levels. This will allow the module
+                        to notify the autonomous vacuum to come back to the docking station or to continue cleaning and
+                        communicate to the user.</li>
+                    <li>InfraredReader - Program focused on the ability to interpret what the infrared sensors are
+                        reading. This is important to notify the autonomous vacuum about walls and stairs. While the
+                        autonomous vacuum will read that there is something in front of it, or there is a ledge, the
+                        controller will let the autonomous vacuum know when it is time to lift up to climb or to lower
+                        the first leg down.</li>
+                    <li>WeightSensor - Program focused on notifying the autonomous vacuum to know when is tie to
+                        continue moving and when to stop moving to protect himself.</li>
+                    <li>Vacuum - This will contain the regular autonomous vacuum cleaning instructions.</li>
+                    <li>Legs - This will allow the autonomous vacuum to lift and lower them.</li>
+                </ol>
+            </p>
+        </div>
+
+        <figure class="text-center mt-3">
+            <img class="figure-img img-fluid" src="images/Figure-11.png" alt="Figure 1">
+            <figcaption class="figure-caption text-center">Figure 11. Entity Relationship Diagram for the Controller
+                Module
+            </figcaption>
+        </figure>
+
+        <div class="row mt-5">
+            <h4>Traceability Matrix </h4>
+        </div>
+
+        <div class="row mt-3">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Requirements</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Requirement</th>
+                        <th scope="col">Design</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Functional Requirements</th>
+                        <td>Operational</td>
+                        <td>FR-1</td>
+                        <td>D2</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Control Handling</td>
+                        <td>FR-2</td>
+                        <td>D3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Control Handling</td>
+                        <td>FR-3</td>
+                        <td>D3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Operational</td>
+                        <td>FR-4</td>
+                        <td>D1</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Operational</td>
+                        <td>FR-5</td>
+                        <td>D2</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Operational</td>
+                        <td>FR-6</td>
+                        <td>D2</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Control Handling</td>
+                        <td>FR-7</td>
+                        <td>D2</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Control Handling</td>
+                        <td>FR-8</td>
+                        <td>D3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Control Handling</td>
+                        <td>FR-9</td>
+                        <td>D3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Operational</td>
+                        <td>FR-10</td>
+                        <td>D2</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Operational</td>
+                        <td>FR-11</td>
+                        <td>D2</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-striped table-bordered mt-5">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Requirements</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Requirement</th>
+                            <th scope="col">Design</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Non-Functional Requirements</th>
+                            <td>Operational</td>
+                            <td>NFR-1</td>
+                            <td>D2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>Control Handling</td>
+                            <td>NFR-2</td>
+                            <td>D1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>Control Handling</td>
+                            <td>NFR-3</td>
+                            <td>D3</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>Operational</td>
+                            <td>NFR-4</td>
+                            <td>D1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>Operational</td>
+                            <td>NFR-5</td>
+                            <td>D1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>Operational</td>
+                            <td>NFR-6</td>
+                            <td>D1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>Operational</td>
+                            <td>NFR-7</td>
+                            <td>D2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>Operational</td>
+                            <td>NFR-8</td>
+                            <td>D2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>Control Handling</td>
+                            <td>NFR-9</td>
+                            <td>D3</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>Operational</td>
+                            <td>NFR-10</td>
+                            <td>D3</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+
+
+
+
+        <!-- Style Sheet -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- Dependencies -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

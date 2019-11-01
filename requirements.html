@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CS5744 - Project 1 - Robot Vacuum</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">Stair Climbing Vacuum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Background</a>
+                <a class="nav-item nav-link" href="use_cases.html">Use Cases</a>
+                <a class="nav-item nav-link active" href="requirements.html">Requirements</a>
+                <a class="nav-item nav-link" href="design.html">High-Level Design</a>
+                <a class="nav-item nav-link" href="modules.html">Modules</a>
+                <a class="nav-item nav-link" href="rationale.html">Design Rationale</a>
+                <a class="nav-item nav-link" href="conclusion.html">Conclusion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="row mt-5">
+            <h3>Requirements</h3>
+        </div>
+
+        <div class="row mt-5">
+            <h4>Functional Requirements</h4>
+        </div>
+
+        <b>FR-1.</b> The system must retain the basic vacuum functions:<br>
+
+        <b>FR-1.1.</b> Must be able to collect dust.<br>
+
+        <b>FR-1.2.</b> Must be able to pick up pet hair.<br>
+
+        <b>FR-2.</b> The system must be able to navigate the floorplan unassisted:<br>
+
+        <b>FR-2.1.</b> The system must be able to detect when each floor is finished and move to the next.<br>
+
+        <b>FR-3.</b> The system must be able to detect obstacles and change route accordingly.<br>
+
+        <b>FR-4.</b> The system must be able to detect stairs vs other objects.<br>
+
+        <b>FR-5.</b> The system must be able to climb stairs:<br>
+
+        <b>FR-5.1</b> Must be able to not fall off the stairs.<br>
+
+        <b>FR-6.</b> The system must be able to go down the stairs.<br>
+
+        <b>FR-7.</b> The system must be able to go to the docking station when vacuuming is done.<br>
+
+        <b>FR-8.</b> The system must be able to integrate with a mobile application in order receive configuration and
+        report status.<br>
+
+        <b>FR-9.</b> The system must allow the configuration of floorplan bounds via the mobile app.<br>
+
+        <b>FR-10.</b> The system needs to protect itself if stepped on:<br>
+
+        <b>FR-10.1.</b> Must be able to continue if it is a safe weight.<br>
+
+        <b>FR-10.2.</b> The system will stop moving and make a sound that will scare the person or pet off of the
+        machine if an unsafe weight.<br>
+
+        <b>FR-11.</b> The system needs to be able to alert the owner if the system is stuck somewhere.<br>
+
+
+        <div class="row mt-5">
+            <h4>Non-Functional Requirements</h4>
+        </div>
+
+        <b>NFR-1.</b> The system shall be able to operate for at least 2 hours on charge.<br>
+
+        <b>NFR-2.</b> The system shall return to the docking station if the battery level is under 10 percent.<br>
+
+        <b>NFR-3.</b> Once recharged the system shall resume the cleaning automatically if not previously
+        completed:<br>
+
+        <b>NFR-3.1.</b> If the system needs to recharge, it has to store which areas have been covered and which
+        have not to
+        continue when it went to charge.<br>
+
+        <b>NFR-4.</b> The system shall indicate the battery level with an LED light:<br>
+
+        <b>NFR-4.1.</b> If the battery is discharged the system shall display a solid red light.<br>
+
+        <b>NFR-4.2.</b> If the battery is too low to start cleaning the system shall display a flashing red
+        light.<br>
+
+        <b>NFR-4.3.</b> If the system’s battery is charging the light indication shall display a flashing amber
+        light.<br>
+
+        <b>NFR-4.4.</b> If the system is fully charged the light indicator shall display a solid green light.<br>
+
+        <b>NFR-5.</b> The system will clearly display when vacuum bags need to be changed.<br>
+
+        <b>NFR-6.</b> When full the system will not run.<br>
+
+        <b>NFR-7.</b> There needs to be an easy Vacuum bag changing system.<br>
+
+        <b>NFR-8.</b> There should be a storage for bags on top of the charging station.<br>
+
+        <b>NFR-9.</b> Status of the vacuum, i.e. not cleaned that day, cleaning, and cleaned.<br>
+
+        <b>NFR-10.</b> Status of the charge level of the Vacuum.<br>
+
+    </div>
+
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
